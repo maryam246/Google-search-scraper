@@ -3,10 +3,10 @@ import re
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 # Function to sanitize a string for use as a filename
@@ -36,10 +36,7 @@ def click_more_results(driver):
 
 # Function to perform Google search and retrieve search results
 def google_search(query, num_results=50):
-    chrome_driver_path = r"C:\Users\Ammara Khanam\PycharmProjects\pythonProject4\demo\chromedriver.exe"
-    service = Service(chrome_driver_path)
-    service.start()
-    driver = webdriver.Chrome(service=service)
+    driver = webdriver.Chrome(ChromeDriverManager().install())
 
     search_results = []  # Initialize search_results
 
